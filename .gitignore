@@ -28,9 +28,6 @@ backend/prisma/*.db-journal
 .DS_Store
 Thumbs.db
 
-# Obsidian
-.obsidian/
-
 # VS Code / IDE
 .vscode/
 .idea/

@@ -1,6 +1,6 @@
-# 💎 Finnancial v2.2.13 — Enterprise & Audit Edition
+# 💎 FinanZen v2.2.14 — Enterprise & Audit Edition
 
-O **Finnancial** é um sistema avançado de gestão financeira pessoal e empresarial, concebido com foco em escalabilidade, resiliência atômica e precisão contábil. A versão v2.2.13 marca a consolidação da arquitetura de transações interativas, garantindo que todas as mutações no banco de dados sejam infalíveis.
+O **FinanZen** é um sistema avançado de gestão financeira pessoal e empresarial, concebido com foco em escalabilidade, resiliência atômica e precisão contábil. A versão v2.2.14 marca a consolidação da arquitetura de transações interativas, garantindo que todas as mutações no banco de dados sejam infalíveis.
 
 ## 🚀 Arquitetura e Tech Stack
 

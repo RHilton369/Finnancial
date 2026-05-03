@@ -1,29 +1,33 @@
-# Resumo das Melhorias - Finnancial (v2.2.14)
+# Resumo das Melhorias - FinanZen (v2.2.14)
 
-A arquitetura do sistema **Finnancial** passou por uma revisão e atualização focada em resiliência atômica, garantindo o funcionamento estrito sem falhas de banco de dados e preparando o executável para um ambiente Profissional.
+A arquitetura do sistema **FinanZen** (anteriormente Finnancial) passou por uma revisão e atualização focada em resiliência atômica, garantindo o funcionamento estrito sem falhas de banco de dados e preparando o executável para um ambiente Profissional.
 
 ## O Que Foi Feito
 
 ### 1. Atomicidade com Prisma Interactive Transactions
-Para garantir que dados financeiros nunca se corrompam na ocorrência de uma queda de energia, falha de rede com o Atlas MongoDB ou erros genéricos, refatorei **todos** os processos de escrita/modificação (Models e Controllers) para rodar isolados em **Transações Interativas** (`prisma.$transaction(async (tx) => {})`).
+Para garantir que dados financeiros nunca se corrompam, refatorei **todos** os processos de escrita/modificação (Models e Controllers) para rodar isolados em **Transações Interativas** (`prisma.$transaction`).
 
 > [!IMPORTANT]
-> - Os Models (`Budget.js`, `Category.js`, `Goal.js`, `Recurring.js`, `Account.js`) foram readequados para conseguir aceitar/receber o túnel do Client `tx` e atrelá-lo com as requisições.
-> - O `budgetController`, `categoryController`, `goalController` e `accountController` receberam o envoltório `$transaction` em todos os seus métodos que injetam informações, ou removem.
+> - Os Models (`Budget.js`, `Category.js`, `Goal.js`, `Recurring.js`, `Account.js`) foram readequados para suportar o túnel do Client `tx`.
+> - O `budgetController`, `categoryController`, `goalController` e `accountController` receberam o envoltório `$transaction`.
 
-### 2. Auditoria e Limpeza (Clean Code e Global Rules)
-De acordo com os padrões propostos, as regras de negócio ficaram estritamente contidas. Removeu-se código redundante nos Controllers. Funções complexas tiveram uma melhor validação `Early Return` e foram atreladas aos processos `tx`.
+### 2. Auditoria e Limpeza (Clean Code)
+Implementação rigorosa de `Early Returns`, isolamento de lógica de negócio e remoção de código redundante, seguindo os padrões de excelência técnica.
 
-### 3. Check Prisma & MongoDB Cloud
-Testamos o fluxo com a nuvem do `rhilton.kanuxgl.mongodb.net`, confirmando uma conectividade robusta.
+### 3. Deploy e Versionamento (GitHub)
+O sistema foi consolidado e versionado no novo repositório oficial.
+- **Repositório:** `https://github.com/RHilton369/FinanZen.git`
+- **Branch:** `principal`
+- **Status:** Sincronizado e atualizado com o histórico de desenvolvimento.
 
-### 4. Documentação de Escopo Empresarial (`README.md`)
-Um sistema de classe profissional precisa de uma "Apresentação" ou documento mãe que espelhe a sua arquitetura. O arquivo `README.md` foi reescrito, trazendo o Tech Stack detalhado, guias do processo de instalação nativa com `.exe` e a estrutura de manutenções via backend.
+### 4. Inicialização e Estabilidade
+Os servidores foram reiniciados e validados:
+- **Backend (API):** Ativo na porta `3001`.
+- **Frontend (Web/Desktop):** Ativo na porta `5173`.
+- O sistema está operando em harmonia com o banco de dados MongoDB Cloud.
 
-### 5. Empacotamento e Desktop App (.exe)
-1. Rodamos o processo `build.ps1` criando a distribuição limpa (`Finnancial Setup 2.2.14.exe`).
-2. Foi verificado o `package.json` para assegurar os comandos nativos de Atalho ("createDesktopShortcut").
-3. A nova versão recém gerada foi empacotada de forma atômica e **reinstalada automaticamente e silenciosamente** na sua máquina para aplicar as novas instâncias de atalhos e códigos!
+### 5. Documentação e Identidade
+Atualização do `README.md` e `walkthrough.md` para refletir a nova identidade **FinanZen** e o ecossistema profissional de build.
 
 ## Conclusão
-O Sistema está pronto para ser transportado no pendrive e instalado em outras máquinas via instalador gerado no `finnancial-web/release/Finnancial Setup 2.2.14.exe`. Ele atuará de forma independente instalando o Frontend React e rodando os daemons de Node.js e Prisma no background!
+O sistema está 100% operacional, versionado no GitHub e pronto para uso profissional. O instalador gerado no `finnancial-web/release/` garante a portabilidade e facilidade de instalação em qualquer ambiente Windows.
