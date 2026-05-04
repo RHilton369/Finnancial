@@ -1,0 +1,75 @@
+.topbar {
+  height: var(--topbar-height);
+  background: var(--bg-card);
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  flex-shrink: 0;
+}
+
+.left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.menuBtn {
+  display: none;
+  padding: 6px;
+  color: var(--text-secondary);
+  border-radius: var(--border-radius-sm);
+  background: transparent;
+  transition: background var(--transition);
+}
+
+.menuBtn:hover {
+  background: var(--bg-page);
+}
+
+.title {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.monthSelector {
+  display: flex;
+  gap: 8px;
+}
+
+.monthSelector select {
+  padding: 6px 12px;
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius-sm);
+  font-size: 13px;
+  color: var(--text-primary);
+  background: var(--bg-card);
+  cursor: pointer;
+}
+
+.monthSelector select:focus {
+  outline: none;
+  border-color: var(--color-primary);
+}
+
+@media (max-width: 768px) {
+  .topbar {
+    padding: 0 16px;
+  }
+
+  .menuBtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .title {
+    font-size: 16px;
+  }
+
+  .monthSelector select {
+    padding: 4px 8px;
+    font-size: 12px;
+  }
+}

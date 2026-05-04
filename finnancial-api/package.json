@@ -1,0 +1,53 @@
+{
+  "name": "finnancial-api",
+  "version": "2.2.14",
+  "description": "API REST para controle financeiro pessoal",
+  "main": "src/server.js",
+  "bin": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js",
+    "pkg": "npx pkg . --output servidor-interno.exe",
+    "test": "vitest",
+    "test:coverage": "vitest run --coverage"
+  },
+  "pkg": {
+    "assets": [
+      "prisma/schema.prisma",
+      "node_modules/.prisma/client/**/*",
+      "node_modules/@prisma/client/**/*",
+      "node_modules/thread-stream/**/*",
+      "node_modules/.pnpm/thread-stream@*/node_modules/thread-stream/**/*",
+      "node_modules/.pnpm/pino@*/node_modules/pino/**/*",
+      "node_modules/.pnpm/pino-pretty@*/node_modules/pino-pretty/**/*",
+      "node_modules/.pnpm/@prisma+client@*/node_modules/.prisma/client/**/*",
+      "node_modules/.pnpm/@prisma+client@*/node_modules/@prisma/client/**/*"
+    ],
+    "targets": [
+      "node18-win-x64"
+    ],
+    "outputPath": "."
+  },
+  "dependencies": {
+    "@prisma/client": "^6.19.3",
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "express-rate-limit": "^7.1.5",
+    "helmet": "^7.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "mongodb": "^7.2.0",
+    "pino": "^9.4.0",
+    "pino-pretty": "^13.1.3",
+    "zod": "^3.22.4"
+  },
+  "devDependencies": {
+    "@vitest/coverage-v8": "^4.1.5",
+    "nodemon": "^3.0.2",
+    "pkg": "^5.8.1",
+    "prisma": "^6.19.3",
+    "vitest": "^4.1.5",
+    "vitest-mock-extended": "^4.0.0"
+  }
+}

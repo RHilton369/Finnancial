@@ -1,0 +1,176 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Tabs */
+.tabs {
+  display: flex;
+  gap: 4px;
+  background: var(--bg-page);
+  padding: 4px;
+  border-radius: var(--border-radius-sm);
+}
+
+.tab {
+  flex: 1;
+  padding: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: 4px;
+  color: var(--text-secondary);
+  transition: all var(--transition);
+}
+
+.tabActive {
+  color: white;
+}
+
+.expenseTab.tabActive { background: var(--color-danger); }
+.incomeTab.tabActive { background: var(--color-primary); }
+.transferTab.tabActive { background: var(--color-info); }
+
+/* Amount */
+.amountWrap {
+  text-align: center;
+  padding: 20px 0;
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 8px;
+}
+
+.amountPrefix {
+  font-size: 24px;
+  color: var(--text-tertiary);
+}
+
+.amountInput {
+  font-size: 48px;
+  font-weight: 700;
+  text-align: center;
+  border: none;
+  background: transparent;
+  outline: none;
+  width: 250px;
+  max-width: 100%;
+}
+
+.amountInput::placeholder {
+  color: #d1d5db;
+}
+
+/* Category grid */
+.catGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  max-height: 200px;
+  overflow-y: auto;
+  padding: 4px;
+}
+
+.catItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 12px 8px;
+  border: 2px solid transparent;
+  border-radius: var(--border-radius-sm);
+  background: transparent;
+  transition: all var(--transition);
+}
+
+.catItem:hover {
+  background: var(--bg-page);
+}
+
+.catSelected {
+  font-weight: 500;
+}
+
+.catName {
+  font-size: 11px;
+  text-align: center;
+  color: var(--text-secondary);
+  line-height: 1.2;
+}
+
+/* Fields */
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.field label {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+
+.input, .select {
+  height: 40px;
+  padding: 0 12px;
+  border: 1.5px solid var(--border-color);
+  border-radius: var(--border-radius-sm);
+  font-size: 14px;
+  outline: none;
+  transition: border-color var(--transition);
+}
+
+.input:focus, .select:focus {
+  border-color: var(--color-primary);
+}
+
+.textarea {
+  padding: 8px 12px;
+  border: 1.5px solid var(--border-color);
+  border-radius: var(--border-radius-sm);
+  font-size: 14px;
+  outline: none;
+  resize: vertical;
+  font-family: inherit;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 12px;
+}
+
+.notesToggle {
+  color: var(--text-tertiary);
+  font-size: 13px;
+  text-align: left;
+}
+
+.notesToggle:hover {
+  color: var(--color-primary);
+}
+
+/* Submit */
+.submitBtn {
+  padding: 14px;
+  border-radius: var(--border-radius-md);
+  font-size: 16px;
+  font-weight: 600;
+  color: white;
+  border: none;
+  transition: opacity var(--transition);
+}
+
+.submitBtn:hover { opacity: 0.9; }
+.submitBtn:disabled { opacity: 0.6; }
+
+.expenseBtn { background: var(--color-danger); }
+.incomeBtn { background: var(--color-primary); }
+.transferBtn { background: var(--color-info); }
+
+@media (max-width: 600px) {
+  .catGrid { grid-template-columns: repeat(3, 1fr); }
+  .amountInput { font-size: 36px; }
+  .row { grid-template-columns: 1fr; }
+}

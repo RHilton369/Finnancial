@@ -1,0 +1,19 @@
+# Dependências
+node_modules/
+resources/backend/node_modules/
+
+# Build e Releases (NUNCA subir para o Git)
+dist/
+dist-electron/
+release/
+*.exe
+*.blockmap
+*.dll.node
+app.asar
+
+# Logs e Temp
+*.log
+builder_log.txt
+dev_log.txt
+.env
+!.env.example

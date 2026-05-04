@@ -1,0 +1,92 @@
+{
+  "name": "finnancial-web",
+  "private": true,
+  "version": "2.2.14",
+  "description": "Aplicativo desktop de controle financeiro pessoal",
+  "author": {
+    "name": "Finnancial",
+    "email": "contato@finnancial.app"
+  },
+  "type": "module",
+  "main": "dist-electron/main.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "build:electron": "cd ../finnancial-api && pnpm run pkg && powershell -Command \"Copy-Item prisma\\schema.prisma . -ErrorAction SilentlyContinue; Copy-Item (Get-ChildItem -Recurse -Filter query_engine-windows.dll.node | Select-Object -First 1).FullName -Destination . -ErrorAction SilentlyContinue\" && cd ../finnancial-web && vite build && electron-builder",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@hookform/resolvers": "^3.3.4",
+    "axios": "^1.6.5",
+    "date-fns": "^3.2.0",
+    "electron-log": "^5.4.3",
+    "electron-updater": "^6.8.3",
+    "fs-extra": "^10.1.0",
+    "jsonfile": "^6.2.1",
+    "lucide-react": "^0.309.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-hook-form": "^7.49.3",
+    "react-hot-toast": "^2.4.1",
+    "react-router-dom": "^6.21.0",
+    "recharts": "^2.10.3",
+    "zod": "^3.22.4"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.7.0",
+    "cross-env": "^10.1.0",
+    "electron": "^41.1.1",
+    "electron-builder": "^26.8.1",
+    "vite": "6",
+    "vite-plugin-electron": "^0.29.1"
+  },
+  "build": {
+    "appId": "com.finnancial.app",
+    "productName": "Finnancial",
+    "publish": [
+      {
+        "provider": "github",
+        "owner": "Hilton100",
+        "repo": "finnancial"
+      }
+    ],
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "dist/**/*",
+      "dist-electron/**/*"
+    ],
+    "extraResources": [
+      {
+        "from": "../finnancial-api/",
+        "to": "backend",
+        "filter": [
+          "servidor-interno.exe",
+          "schema.prisma",
+          "query_engine-windows.dll.node",
+          ".env"
+        ]
+      }
+    ],
+    "win": {
+      "target": [
+        "nsis"
+      ]
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": "always",
+      "createStartMenuShortcut": true,
+      "shortcutName": "Finnancial"
+    }
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "electron",
+      "electron-winstaller",
+      "esbuild"
+    ]
+  }
+}
