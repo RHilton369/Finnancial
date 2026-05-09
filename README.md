@@ -1,6 +1,6 @@
-# 💎 Finnancial v2.2.13 — Enterprise & Audit Edition
+# 💎 Finnancial v2.0.0 — Enterprise & Audit Edition
 
-O **Finnancial** é um sistema avançado de gestão financeira pessoal e empresarial, concebido com foco em escalabilidade, resiliência atômica e precisão contábil. A versão v2.2.13 marca a consolidação da arquitetura de transações interativas, garantindo que todas as mutações no banco de dados sejam infalíveis.
+O **Finnancial** é um sistema avançado de gestão financeira pessoal e empresarial, concebido com foco em escalabilidade, resiliência atômica e precisão contábil. A versão v2.0.0 marca a consolidação da arquitetura de transações interativas, garantindo que todas as mutações no banco de dados sejam infalíveis.
 
 ## 🚀 Arquitetura e Tech Stack
 

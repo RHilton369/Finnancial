@@ -1,5 +1,7 @@
+import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { Menu } from 'lucide-react';
+import { Select } from '../ui/Select';
 import styles from './TopBar.module.css';
 
 const MONTHS = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho',
@@ -19,20 +21,38 @@ export function TopBar({ onMenuClick }) {
   const title = PAGE_TITLES[location.pathname] || 'Finnancial';
 
   const now = new Date();
-  const storedMonth = localStorage.getItem('selectedMonth');
-  const storedYear = localStorage.getItem('selectedYear');
-  const initialMonth = storedMonth ? parseInt(storedMonth) : now.getMonth() + 1;
-  const initialYear = storedYear ? parseInt(storedYear) : now.getFullYear();
+  
+  const [selectedMonth, setSelectedMonth] = useState(() => {
+    const stored = localStorage.getItem('selectedMonth');
+    return stored ? parseInt(stored) : now.getMonth() + 1;
+  });
+
+  const [selectedYear, setSelectedYear] = useState(() => {
+    const stored = localStorage.getItem('selectedYear');
+    return stored ? parseInt(stored) : now.getFullYear();
+  });
+
+
 
   function handleMonthChange(value) {
+    const month = parseInt(value);
+    setSelectedMonth(month);
     localStorage.setItem('selectedMonth', value);
-    window.dispatchEvent(new CustomEvent('monthChange', { detail: { month: parseInt(value), year: parseInt(localStorage.getItem('selectedYear') || now.getFullYear()) } }));
+    window.dispatchEvent(new CustomEvent('monthChange', { detail: { month, year: selectedYear } }));
   }
 
   function handleYearChange(value) {
+    const year = parseInt(value);
+    setSelectedYear(year);
     localStorage.setItem('selectedYear', value);
-    window.dispatchEvent(new CustomEvent('monthChange', { detail: { month: parseInt(localStorage.getItem('selectedMonth') || now.getMonth() + 1), year: parseInt(value) } }));
+    window.dispatchEvent(new CustomEvent('monthChange', { detail: { month: selectedMonth, year } }));
   }
+
+  const monthOptions = MONTHS.map((m, i) => ({ value: i + 1, label: m }));
+  const yearOptions = Array.from({ length: 5 }, (_, i) => {
+    const y = now.getFullYear() - 2 + i;
+    return { value: y, label: y.toString() };
+  });
 
   return (
     <header className={styles.topbar}>
@@ -43,16 +63,18 @@ export function TopBar({ onMenuClick }) {
         <h1 className={styles.title}>{title}</h1>
       </div>
       <div className={styles.monthSelector}>
-        <select value={initialMonth} onChange={e => handleMonthChange(e.target.value)}>
-          {MONTHS.map((m, i) => (
-            <option key={i + 1} value={i + 1}>{m}</option>
-          ))}
-        </select>
-        <select value={initialYear} onChange={e => handleYearChange(e.target.value)}>
-          {Array.from({ length: 5 }, (_, i) => now.getFullYear() - 2 + i).map(y => (
-            <option key={y} value={y}>{y}</option>
-          ))}
-        </select>
+        <Select
+          value={selectedMonth}
+          onChange={handleMonthChange}
+          options={monthOptions}
+          minWidth="130px"
+        />
+        <Select
+          value={selectedYear}
+          onChange={handleYearChange}
+          options={yearOptions}
+          minWidth="100px"
+        />
       </div>
     </header>
   );

@@ -1,5 +1,5 @@
 Write-Host "--- INICIANDO PROCESSO DE ATUALIZACAO E BUILD ---" -ForegroundColor Cyan
-node bump-version.js
+# node bump-version.js
 
 # 1. Parar processos
 Write-Host "Limpando processos..." -ForegroundColor Yellow
