@@ -62,3 +62,9 @@ Como o frontend do ZenTriq é construído em React + Vite (Single Page Applicati
 
 ### 5. Limpeza de Executáveis Obsoletos
 * **Ação:** Removidos todos os instaladores pesados antigos e redundantes que estavam acumulados na raiz do workspace (`ZenTriq_Alertas.exe`, `ZenTriq_Cartoes_2.0.0.exe`, `ZenTriq_IA.exe`, `ZenTriq_Investimentos.exe`, `ZenTriq_Wrapped.exe`), liberando cerca de 840 MB de armazenamento em disco e mantendo o repositório limpo de ruídos obsoletos.
+
+---
+
+### 6. Sincronização com o GitHub e Auditoria do MongoDB
+* **GitHub:** Commit e Push executados com sucesso para a branch `main` no repositório `https://github.com/RHilton369/ZenTriq.git`. Todos os arquivos de desenvolvimento novos de `zentriq-api` e `zentriq-web` foram rastreados e sincronizados com a nuvem, confirmando o estágio evolutivo v2.4.0 no repositório remoto.
+* **MongoDB:** Executada a auditoria na base de dados do Atlas. Verificado através do script de depuração que todos os ativos de Renda Variável (`BBAS3`, `RANI3`, `AURE3`, `TASA4`) do usuário ativo já contêm a propriedade `quantity` populada com sucesso no banco, garantindo o fim do fallback dinâmico e assegurando a consistência física dos dados.
