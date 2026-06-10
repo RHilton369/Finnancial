@@ -1,6 +1,6 @@
-# Auditoria e Profissionalização do Sistema Finnancial
+# Auditoria e Profissionalização do Sistema ZenTriq
 
-Esta etapa tem como objetivo auditar, padronizar e tornar o código do Finnancial altamente resiliente para uso profissional, garantindo integridade de banco de dados (MongoDB via Prisma), além de preparar e testar o build do executável para distribuição.
+Esta etapa tem como objetivo auditar, padronizar e tornar o código do ZenTriq altamente resiliente para uso profissional, garantindo integridade de banco de dados (MongoDB via Prisma), além de preparar e testar o build do executável para distribuição.
 
 ## User Review Required
 
@@ -16,42 +16,42 @@ Esta etapa tem como objetivo auditar, padronizar e tornar o código do Finnancia
 
 ## Proposed Changes
 
-### finnancial-api/src/controllers
+### zentriq-api/src/controllers
 
 Refatoração em massa para uso de Transações Interativas (`prisma.$transaction`) em todas as mutações para manter um padrão ouro de atomicidade.
 
-#### [MODIFY] [budgetController.js](file:///d:/Arquivos_Obsidian/Finnancial/finnancial-api/src/controllers/budgetController.js)
+#### [MODIFY] [budgetController.js](file:///d:/Arquivos_Obsidian/ZenTriq/zentriq-api/src/controllers/budgetController.js)
 - Envolver `create`, `update` e `remove` em blocos `prisma.$transaction`.
 
-#### [MODIFY] [categoryController.js](file:///d:/Arquivos_Obsidian/Finnancial/finnancial-api/src/controllers/categoryController.js)
+#### [MODIFY] [categoryController.js](file:///d:/Arquivos_Obsidian/ZenTriq/zentriq-api/src/controllers/categoryController.js)
 - Envolver `create` e `update` em `prisma.$transaction` (o `remove` já possui).
 
-#### [MODIFY] [goalController.js](file:///d:/Arquivos_Obsidian/Finnancial/finnancial-api/src/controllers/goalController.js)
+#### [MODIFY] [goalController.js](file:///d:/Arquivos_Obsidian/ZenTriq/zentriq-api/src/controllers/goalController.js)
 - Envolver `create`, `update` e `remove` em `prisma.$transaction`.
 
-#### [MODIFY] [accountController.js](file:///d:/Arquivos_Obsidian/Finnancial/finnancial-api/src/controllers/accountController.js)
+#### [MODIFY] [accountController.js](file:///d:/Arquivos_Obsidian/ZenTriq/zentriq-api/src/controllers/accountController.js)
 - Envolver `create` e `remove` em `prisma.$transaction` (o `update` já possui).
 
-#### [MODIFY] [recurringController.js](file:///d:/Arquivos_Obsidian/Finnancial/finnancial-api/src/controllers/recurringController.js)
+#### [MODIFY] [recurringController.js](file:///d:/Arquivos_Obsidian/ZenTriq/zentriq-api/src/controllers/recurringController.js)
 - Envolver `create`, `update` e `remove` em `prisma.$transaction`.
 
-### finnancial-api/src/models
+### zentriq-api/src/models
 
 Garantir que os métodos estáticos dos modelos aceitem e repassem o objeto `tx` (transação interativa) para as chamadas do Prisma. 
 
-#### [MODIFY] [Budget.js](file:///d:/Arquivos_Obsidian/Finnancial/finnancial-api/src/models/Budget.js)
-#### [MODIFY] [Category.js](file:///d:/Arquivos_Obsidian/Finnancial/finnancial-api/src/models/Category.js)
-#### [MODIFY] [Goal.js](file:///d:/Arquivos_Obsidian/Finnancial/finnancial-api/src/models/Goal.js)
-#### [MODIFY] [Recurring.js](file:///d:/Arquivos_Obsidian/Finnancial/finnancial-api/src/models/Recurring.js)
+#### [MODIFY] [Budget.js](file:///d:/Arquivos_Obsidian/ZenTriq/zentriq-api/src/models/Budget.js)
+#### [MODIFY] [Category.js](file:///d:/Arquivos_Obsidian/ZenTriq/zentriq-api/src/models/Category.js)
+#### [MODIFY] [Goal.js](file:///d:/Arquivos_Obsidian/ZenTriq/zentriq-api/src/models/Goal.js)
+#### [MODIFY] [Recurring.js](file:///d:/Arquivos_Obsidian/ZenTriq/zentriq-api/src/models/Recurring.js)
 
 ### Documentação (Raiz)
 
-#### [MODIFY] [README.md](file:///d:/Arquivos_Obsidian/Finnancial/README.md)
+#### [MODIFY] [README.md](file:///d:/Arquivos_Obsidian/ZenTriq/README.md)
 - Remodelar o Readme com aspectos mais profissionais: escopo do projeto, regras de arquitetura, diagrama/stack (Node, React, Prisma, MongoDB Atlas), instruções robustas de execução e build. 
 
 ### Build e Distribuição
 
-#### [MODIFY] [build.ps1](file:///d:/Arquivos_Obsidian/Finnancial/build.ps1)
+#### [MODIFY] [build.ps1](file:///d:/Arquivos_Obsidian/ZenTriq/build.ps1)
 - Revisar o processo de build do Electron, garantindo que atalhos na Área de Trabalho (`shortcut: true`) estejam bem configurados no empacotamento.
 
 ## Verification Plan

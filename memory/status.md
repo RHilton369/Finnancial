@@ -1,9 +1,9 @@
-# Status do Projeto Finnancial - Ultima atualizacao: 2026-04-05
+# Status do Projeto ZenTriq - Ultima atualizacao: 2026-04-05
 
 ## Servidores
-- Backend: `D:\Arquivos_Obsidian\OpenClaude2\finnancial-api` (porta 3001)
-- Frontend: `D:\Arquivos_Obsidian\OpenClaude2\finnancial-web` (porta 5173)
-- Banco: `finnancial-api/database/finnancial.db`
+- Backend: `D:\Arquivos_Obsidian\OpenClaude2\zentriq-api` (porta 3001)
+- Frontend: `D:\Arquivos_Obsidian\OpenClaude2\zentriq-web` (porta 5173)
+- Banco: `zentriq-api/database/zentriq.db`
 
 ## Paginas implementadas (100% prontas)
 - **Login / Register** ✅
@@ -25,7 +25,7 @@
 - Contas: adicionar, editar com tipos (corrente, poupanca, etc)
 
 ## Corrigidos
-- `useTransactions.js` hook esta em `finnancial-web/src/hooks/useTransactions.js`
+- `useTransactions.js` hook esta em `zentriq-web/src/hooks/useTransactions.js`
 - Transaction model usa db.prepare()/bind()/step()
 - DB_PATH path absoluto baseado em __dirname de src/config/database.js
 - `PROJECT_ROOT = path.resolve(__dirname, '..', '..')` em database.js

@@ -1,6 +1,6 @@
-# Resumo das Melhorias - Finnancial (v2.0.0)
+# Resumo das Melhorias - ZenTriq (v2.0.0)
 
-A arquitetura do sistema **Finnancial** passou por uma revisão e atualização focada em resiliência atômica, garantindo o funcionamento estrito sem falhas de banco de dados e preparando o executável para um ambiente Profissional.
+A arquitetura do sistema **ZenTriq** passou por uma revisão e atualização focada em resiliência atômica, garantindo o funcionamento estrito sem falhas de banco de dados e preparando o executável para um ambiente Profissional.
 
 ## O Que Foi Feito
 
@@ -21,12 +21,12 @@ Testamos o fluxo com a nuvem do `rhilton.kanuxgl.mongodb.net`, confirmando uma c
 Um sistema de classe profissional precisa de uma "Apresentação" ou documento mãe que espelhe a sua arquitetura. O arquivo `README.md` foi reescrito, trazendo o Tech Stack detalhado, guias do processo de instalação nativa com `.exe` e a estrutura de manutenções via backend.
 
 ### 5. Empacotamento e Desktop App (.exe)
-1. Rodamos o processo `build.ps1` criando a distribuição limpa (`Finnancial Setup 2.0.0.exe`).
+1. Rodamos o processo `build.ps1` criando a distribuição limpa (`ZenTriq Setup 2.0.0.exe`).
 2. Foi verificado o `package.json` para assegurar os comandos nativos de Atalho ("createDesktopShortcut").
 3. A nova versão recém gerada foi empacotada de forma atômica e **reinstalada automaticamente e silenciosamente** na sua máquina para aplicar as novas instâncias de atalhos e códigos!
 
 ## Conclusão
-O Sistema está pronto para ser transportado no pendrive e instalado em outras máquinas via instalador gerado no `finnancial-web/release/Finnancial Setup 2.0.0.exe`. Ele atuará de forma independente instalando o Frontend React e rodando os daemons de Node.js e Prisma no background!
+O Sistema está pronto para ser transportado no pendrive e instalado em outras máquinas via instalador gerado no `zentriq-web/release/ZenTriq Setup 2.0.0.exe`. Ele atuará de forma independente instalando o Frontend React e rodando os daemons de Node.js e Prisma no background!
 
 ---
 ### Atualização: UI/UX dos Seletores de Data

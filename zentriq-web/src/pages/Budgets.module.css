@@ -1,0 +1,238 @@
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.periodTitle {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.addButton {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--color-primary);
+  color: white;
+  padding: 8px 16px;
+  border-radius: var(--border-radius-sm);
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.addButton:hover { opacity: 0.9; }
+
+/* Summary */
+.summaryBar {
+  display: flex;
+  justify-content: space-between;
+  background: var(--bg-card);
+  padding: 12px 20px;
+  border-radius: var(--border-radius-md);
+  margin-bottom: 16px;
+  font-size: 13px;
+  color: var(--text-secondary);
+  box-shadow: var(--shadow-card);
+}
+
+/* Budget grid */
+.budgetGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.budgetCard {
+  position: relative;
+  background: linear-gradient(135deg, var(--bg-card) 0%, rgba(33, 38, 45, 0.4) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 20px;
+  border-radius: var(--border-radius-md);
+  box-shadow: var(--shadow-card);
+  transition: box-shadow 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
+}
+
+.budgetCard:hover {
+  transform: translateY(-2px);
+  border-color: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+}
+
+.closeBtn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  color: var(--text-tertiary);
+  padding: 4px;
+  border-radius: 4px;
+  transition: color var(--transition), background var(--transition);
+}
+
+.closeBtn:hover { color: var(--color-danger); background: var(--color-danger-light); }
+
+.cardHeader {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.cardIcon {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--border-radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.cardInfo { flex: 1; }
+.cardName { font-size: 15px; font-weight: 500; display: block; margin-bottom: 4px; }
+
+.progressBar {
+  height: 8px;
+  background: var(--bg-page);
+  border-radius: 99px;
+  overflow: hidden;
+}
+
+.progressFill {
+  height: 100%;
+  border-radius: 99px;
+  transition: width 600ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.cardFooter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+.statusBadge {
+  font-size: 12px;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 10px;
+}
+
+.statusBadge.ok { background: var(--color-success-light); color: var(--color-success); }
+.statusBadge.warning { background: var(--color-warning-light); color: var(--color-warning); }
+.statusBadge.danger { background: var(--color-danger-light); color: var(--color-danger); }
+
+.cardAmount {
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+.editBtn {
+  font-size: 12px;
+  color: var(--text-tertiary);
+  font-weight: 500;
+}
+
+.editBtn:hover { color: var(--color-primary); }
+
+/* Without budget */
+.withoutBudget {
+  margin-top: 24px;
+}
+
+.sectionTitle {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-bottom: 12px;
+}
+
+.noBudgetList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.noBudgetItem {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  background: var(--bg-card);
+  border-radius: var(--border-radius-sm);
+  font-size: 14px;
+}
+
+.defineBtn {
+  margin-left: auto;
+  font-size: 12px;
+  color: var(--color-primary);
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.defineBtn:hover { text-decoration: underline; }
+
+/* Form */
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.form .field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form label {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+
+.form .select, .form .input {
+  height: 40px;
+  padding: 0 12px;
+  border: 1.5px solid var(--border-color);
+  border-radius: var(--border-radius-sm);
+  font-size: 14px;
+  outline: none;
+}
+
+.form .select:focus, .form .input:focus {
+  border-color: var(--color-primary);
+}
+
+.submitBtn {
+  background: var(--color-primary);
+  color: white;
+  padding: 12px;
+  border-radius: var(--border-radius-md);
+  font-size: 14px;
+  font-weight: 600;
+  border: none;
+}
+
+.submitBtn:disabled { opacity: 0.6; }
+
+.loading, .empty {
+  text-align: center;
+  padding: 60px 20px;
+  color: var(--text-tertiary);
+  font-size: 14px;
+}
+
+.empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}

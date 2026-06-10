@@ -35,11 +35,11 @@ Caso precise rodar a versão antiga ou limpar processos órfãos:
 taskkill /F /IM node.exe
 
 # 2. Iniciar o Backend (API)
-cd D:/Arquivos_Obsidian/Finnancial/finnancial-api
+cd D:/Arquivos_Obsidian/ZenTriq/zentriq-api
 npm run dev
 
 # 3. Iniciar o Frontend (Web)
-cd D:/Arquivos_Obsidian/Finnancial/finnancial-web
+cd D:/Arquivos_Obsidian/ZenTriq/zentriq-web
 npm run dev
 ```
 

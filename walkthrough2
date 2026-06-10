@@ -1,0 +1,26 @@
+# Evolução Nível 4: Alertas e Wrapped 🚀
+
+## Fase 2 Entregue: Alertas Inteligentes (Notificações) 🔔
+Implementamos um sistema de notificações automático que analisa suas finanças no momento em que você abre o ZenTriq!
+- **Motor de Análise:** Criamos um serviço em segundo plano (`notificationService.js`) que varre seus Orçamentos e Cartões de Crédito.
+- **Detecção de Risco:** Se você atingir 80% do limite de um orçamento mensal, ou se sua fatura do cartão vencer em 3 dias, o ZenTriq gera um alerta.
+- **Central de Notificações:** Adicionamos um Sino (🔔) na TopBar (barra superior) com um selinho vermelho mostrando quantas mensagens não lidas você tem.
+- **Dropdown Premium:** Ao clicar no sino, uma lista suspensa se abre permitindo ler os avisos e marcá-los como lidos!
+- **Resiliência e Correção de Bugs (Hotfix):**
+  - Corrigido o erro crítico *Invalid time value* no frontend que causava um crash ao clicar no Sino.
+  - O backend agora cria notificações utilizando data ISO (`new Date().toISOString()`), evitando o problema com MongoDB que gerava literais `"datetime('now')"`.
+  - Adicionada rotina automática de limpeza (self-healing) que apaga os registros inválidos do banco de dados no momento da sincronização.
+  - Implementada função defensiva `formatNotificationDate` no front para garantir que mesmo registros de data inválidos antigos não quebrem a interface.
+
+## Fase 1 Entregue: Fechamento do Mês ("Wrapped" Financeiro) 🎁
+Agora o ZenTriq possui um fechamento visual imersivo (estilo *Stories*) para resumir o seu mês com cálculos de *Saving Rate* e a Categoria Vilã. Acessível via Dashboard.
+
+## Como testar?
+1. Execute o novo instalador atualizado `ZenTriq_Alertas.exe` na raiz do projeto para atualizar sua aplicação.
+2. Acesse a tela principal do ZenTriq.
+3. Clique no **Ícone de Sino** no canto superior direito para ver as notificações sem risco de crash.
+4. Crie um **Orçamento** para alguma categoria, e então vá em Transações e lance uma despesa enorme que ultrapasse 80% desse limite.
+5. Dê F5 (ou mude de mês e volte) para o sistema rodar a varredura e repare no selinho vermelho aparecendo no sino!
+
+### O próximo passo!
+Com o Wrapped e as Notificações prontos e estáveis, a nossa **Fase 3** nos aguarda: O **Dashboard de Investimentos**, que trará um controle completo de patrimônio e rentabilidade para o ZenTriq!

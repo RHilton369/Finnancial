@@ -1,0 +1,56 @@
+# Roadmap de Evolução do ZenTriq (Plano de Ação)
+
+Dado que você gostou de todas as ideias, a melhor forma de elevar o ZenTriq ao nível premium sem quebrar o que já funciona é agrupar as melhorias em fases. 
+
+Dessa forma, entregamos valor contínuo e testável.
+
+## 🚀 O Roadmap (Visão Geral)
+
+*   **Fase 1 (Atual):** Módulo de Assinaturas/Despesas Fixas + Dark Mode Nativo.
+*   **Fase 2:** Importação Inteligente (OFX/CSV) e Bank Sync.
+*   **Fase 3:** Gestão Específica de Cartão de Crédito e Previsão de Fluxo de Caixa.
+
+Abaixo, detalho o escopo técnico exclusivo para começarmos a **Fase 1** agora mesmo.
+
+---
+
+# Escopo da Fase 1: Assinaturas e Modo Escuro
+
+## 1. Módulo de Assinaturas e Despesas Fixas
+
+Atualmente, o banco de dados do ZenTriq possui a tabela `recurring_transactions`, mas o aplicativo não possui uma tela dedicada para o usuário gerenciar suas assinaturas (Netflix, Spotify, Internet) de forma visual.
+
+### [NEW] `zentriq-web/src/pages/Subscriptions.jsx`
+*   Criar uma tela inteiramente nova com cards visuais para cada assinatura.
+*   Exibir a soma do custo fixo mensal.
+*   Permitir criar, editar e cancelar assinaturas/recorrências.
+
+### [MODIFY] `zentriq-web/src/components/layout/Sidebar.jsx`
+*   Adicionar o novo item "Assinaturas" ou "Despesas Fixas" no menu lateral.
+
+### [MODIFY] Backend (`zentriq-api/src/controllers/recurringController.js` e Rotas)
+*   Criar ou refinar o CRUD da API para listar as assinaturas formatadas para a nova tela.
+*   Garantir a lógica de "Next Due Date" (Próximo Vencimento).
+
+## 2. Modo Escuro Dinâmico (Dark Mode)
+
+Sistemas financeiros premium costumam ter um visual escuro e elegante para aliviar a visão do usuário.
+
+### [MODIFY] `zentriq-web/src/index.css` (e variáveis globais)
+*   Extrair todas as cores fixas e transformá-las em variáveis CSS semânticas (`--bg-primary`, `--text-main`, etc).
+*   Criar o seletor `[data-theme='dark']` com a paleta chumbo/neon.
+*   Aproveitar os recursos do sistema operacional (`prefers-color-scheme: dark`) para ativar automaticamente.
+
+### [MODIFY] `zentriq-web/src/components/layout/TopBar.jsx` ou `Settings.jsx`
+*   Adicionar um botão de *toggle* para o usuário alternar manualmente entre Claro/Escuro ou deixar automático.
+
+---
+
+> [!IMPORTANT]
+> **User Review Required**
+> 
+> Você está de acordo com priorizarmos essas duas frentes (Assinaturas e Dark Mode) para esta primeira fase? Podemos iniciar a implementação dos códigos assim que você aprovar!
+
+## Verification Plan
+
+*   **Manual:** Acessar a nova rota `/subscriptions` no menu, criar uma assinatura recorrente e verificar se ela aparece corretamente. Alternar o tema do sistema operacional para Escuro e validar se o ZenTriq reage instantaneamente mudando suas cores.

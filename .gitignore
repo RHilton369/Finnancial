@@ -1,17 +1,17 @@
 # Dependencies
 node_modules/
-finnancial-api/node_modules/
-finnancial-web/node_modules/
+zentriq-api/node_modules/
+zentriq-web/node_modules/
 
 # Vite / React
-finnancial-web/dist/
-finnancial-web/release/
+zentriq-web/dist/
+zentriq-web/release/
 
 # Env files
 .env
 .env.local
-finnancial-api/.env
-finnancial-web/.env
+zentriq-api/.env
+zentriq-web/.env
 
 # Logs
 npm-debug.log*
@@ -29,7 +29,7 @@ Thumbs.db
 
 # Build outputs
 dist/
-finnancial-api/servidor-interno.exe
+zentriq-api/servidor-interno.exe
 
 # Scratch files
 scratch/

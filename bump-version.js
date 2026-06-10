@@ -2,8 +2,8 @@ import fs from 'fs';
 import path from 'path';
 
 const paths = [
-  './finnancial-api/package.json',
-  './finnancial-web/package.json'
+  './zentriq-api/package.json',
+  './zentriq-web/package.json'
 ];
 
 function incrementVersion() {

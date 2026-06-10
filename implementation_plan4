@@ -1,0 +1,120 @@
+# Fase 3: Dashboard de Investimentos com Cotação Automática 📈
+
+Implementação do módulo de controle de investimentos do ZenTriq, integrando cotações automáticas de Renda Variável (Ações e FIIs da B3) por meio da API **Brapi**, além do suporte a lançamentos manuais para Renda Fixa e outros ativos.
+
+## User Review Required
+
+> [!IMPORTANT]
+> **Modificações de Banco de Dados (MongoDB & Prisma):**
+> Adicionaremos o campo opcional `ticker` (ex: `"PETR4"`, `"MXRF11"`) no modelo `investments` para possibilitar a consulta automática de preços na B3.
+> Também incluiremos uma variável de ambiente `BRAPI_TOKEN` no arquivo `.env` para autenticação na API de cotações.
+
+> [!TIP]
+> **Integração com Brapi API:**
+> Desenvolveremos um serviço no backend que agrupa todos os tickers de renda variável do usuário e faz uma única chamada para o endpoint da Brapi (`https://brapi.dev/api/quote/{tickers}`). O app sincronizará os preços automaticamente ao abrir a página ou através de um botão "Sincronizar Cotações" na interface.
+
+---
+
+## Proposed Changes
+
+### 🗄️ Banco de Dados (Database Layer)
+
+#### [MODIFY] [schema.prisma](file:///d:/Arquivos_Obsidian/ZenTriq/zentriq-api/prisma/schema.prisma)
+- Adicionar os modelos `investments` (com o campo `ticker`) e `investment_history`.
+- Adicionar relações correspondentes no modelo `users`.
+
+```prisma
+model investments {
+  id              String               @id @default(auto()) @map("_id") @db.ObjectId
+  user_id         String               @db.ObjectId
+  name            String               // Ex: "CDB Inter 102%", "Ações Petrobras", "Tesouro IPCA 2029"
+  type            String               // "fixed_income", "variable_income", "cripto", "others"
+  ticker          String?              // Ex: "PETR4", "MXRF11", "BOVA11" (usado para cotação automática)
+  institution     String               // Ex: "Inter", "XP", "NuInvest"
+  invested_amount Float                // Valor original total investido
+  current_amount  Float                // Valor atualizado de mercado/cotação
+  purchase_date   String               // Data de aquisição/início (YYYY-MM-DD)
+  created_at      String?              @default("datetime('now')")
+  updated_at      String?
+  users           users                @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  history         investment_history[]
+  @@index([user_id])
+}
+
+model investment_history {
+  id            String      @id @default(auto()) @map("_id") @db.ObjectId
+  user_id       String      @db.ObjectId
+  investment_id String      @db.ObjectId
+  date          String      // Snapshot mensal (Formato "YYYY-MM")
+  invested_val  Float       // Valor investido acumulado no mês
+  current_val   Float       // Valor atualizado acumulado no mês
+  created_at    String?     @default("datetime('now')")
+  investments   investments @relation(fields: [investment_id], references: [id], onDelete: Cascade)
+  @@index([user_id])
+  @@index([investment_id])
+}
+```
+
+---
+
+### ⚙️ Backend (API Layer)
+
+#### [NEW] [investmentSchemas.js](file:///d:/Arquivos_Obsidian/ZenTriq/zentriq-api/src/schemas/investmentSchemas.js)
+- Esquemas de validação Zod para cadastrar investimento e registrar cotação/aporte manual.
+
+#### [NEW] [investmentService.js](file:///d:/Arquivos_Obsidian/ZenTriq/zentriq-api/src/services/investmentService.js)
+- Serviço para consulta e integração com a **Brapi API**:
+  - Busca os preços de mercado mais recentes para os tickers cadastrados.
+  - Atualiza os valores em lote no banco.
+  - Executa fallback para manter saldos manuais caso a API esteja indisponível.
+
+#### [NEW] [investmentController.js](file:///d:/Arquivos_Obsidian/ZenTriq/zentriq-api/src/controllers/investmentController.js)
+- Controladores para:
+  - `list`: Retorna todos os ativos e o balanço consolidado.
+  - `create`: Cria investimento e gera o primeiro histórico.
+  - `update`: Atualiza informações cadastrais.
+  - `remove`: Exclui o ativo e histórico.
+  - `addValuation`: Lança aportes e reajustes manuais.
+  - `syncQuotes`: Chama o serviço de cotações automáticas e recalcula a carteira de renda variável do usuário.
+  - `getHistory`: Devolve o histórico consolidado mensal para renderização de gráficos.
+
+#### [NEW] [investmentRoutes.js](file:///d:/Arquivos_Obsidian/ZenTriq/zentriq-api/src/routes/investment.js)
+- Mapeamento das rotas do CRUD e endpoints de sincronização.
+
+#### [MODIFY] [index.js](file:///d:/Arquivos_Obsidian/ZenTriq/zentriq-api/src/routes/index.js)
+- Registrar as rotas de investimento sob `/api/investments`.
+
+---
+
+### 🖥️ Frontend (UI Layer)
+
+#### [NEW] [investments.js](file:///d:/Arquivos_Obsidian/ZenTriq/zentriq-web/src/api/investments.js)
+- Módulo Axios para chamadas à API de investimentos e sincronização de cotações.
+
+#### [NEW] [Investments.jsx](file:///d:/Arquivos_Obsidian/ZenTriq/zentriq-web/src/pages/Investments.jsx)
+- Página premium de Investimentos:
+  - Gráficos integrados de Diversificação (Pie Chart) e Crescimento Patrimonial (Area Chart).
+  - Botão "Sincronizar Cotações" para atualizar automaticamente os tickers B3 cadastrados.
+  - Tabela com ações de edição, exclusão e lançamento de novas valorizações/aportes.
+  - Alerta amigável se a chave `BRAPI_TOKEN` não estiver configurada no `.env` do servidor.
+
+#### [NEW] [Investments.module.css](file:///d:/Arquivos_Obsidian/ZenTriq/zentriq-web/src/pages/Investments.module.css)
+- CSS com design dark premium e visualizadores de rentabilidade em cores dinâmicas (lucro verde/prejuízo vermelho).
+
+#### [MODIFY] [App.jsx](file:///d:/Arquivos_Obsidian/ZenTriq/zentriq-web/src/App.jsx)
+- Importar e configurar a rota `/investments`.
+
+#### [MODIFY] [Sidebar.jsx](file:///d:/Arquivos_Obsidian/ZenTriq/zentriq-web/src/components/layout/Sidebar.jsx)
+- Adicionar o atalho no menu com o ícone `Briefcase` (Maleta).
+
+#### [MODIFY] [TopBar.jsx](file:///d:/Arquivos_Obsidian/ZenTriq/zentriq-web/src/components/layout/TopBar.jsx)
+- Adicionar o título da rota `/investments`.
+
+---
+
+## Verification Plan
+
+### Testes Manuais
+1. **Sincronização de Cotações:** Cadastrar ativos de renda variável (ex: `PETR4`, `VALE3`, `BBDC4`) com quantidade/preço médio e testar o botão de Sincronizar.
+2. **Histórico da Carteira:** Validar se a variação de cotação cria snapshots no histórico e exibe a curva de crescimento corretamente no gráfico.
+3. **Resiliência da API:** Testar o comportamento da aplicação caso o `BRAPI_TOKEN` esteja em branco ou incorreto (fallback para entrada manual sem quebrar).

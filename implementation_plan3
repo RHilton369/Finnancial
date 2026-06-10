@@ -1,0 +1,43 @@
+# Roadmap Nível 4 - A Evolução do ZenTriq 🚀
+
+Dado que você aprovou as 4 ideias épicas, organizei o planejamento técnico para implementarmos cada uma delas em fases. Como são funcionalidades complexas que envolvem alteração no banco de dados e na inteligência da aplicação, dividi o escopo para entregarmos valor rapidamente em cada etapa.
+
+> [!IMPORTANT]  
+> **User Review Required**  
+> Antes de começarmos a mexer no código, por favor, revise a ordem das fases abaixo. Se estiver de acordo, nós começaremos pela **Fase 1** agora mesmo.
+
+---
+
+## 🎯 Ordem de Execução Proposta
+
+### Fase 1: Fechamento do Mês (O "Spotify Wrapped" das Finanças)
+**Por que começar por aqui?** Não exige mudanças estruturais no banco de dados (só de leitura). É a funcionalidade que gera o maior impacto visual "UAU" logo de cara.
+- Criar a página premium `/wrapped` que será acessada via botão mágico no Dashboard.
+- Criar o algoritmo no backend para calcular a porcentagem de economia (Saving Rate), a categoria vilã de gastos e o comparativo com o mês anterior.
+- Implementar as animações e transições na tela.
+
+### Fase 2: Alertas Inteligentes (Notificações)
+**Por que é a segunda?** Dá vida ao aplicativo e prepara o terreno para a IA. O sistema passa a "falar" com o usuário.
+- **Banco de Dados:** Criar a tabela `notifications` (title, message, is_read, type, date).
+- **Backend:** Criar a lógica que varre o banco todos os dias para gerar alertas (ex: Orçamento em 80%, Cartão vencendo em 3 dias).
+- **Frontend:** Adicionar o ícone de Sino (🔔) na TopBar e uma lista suspensa (dropdown) com as notificações não lidas.
+
+### Fase 3: Dashboard de Investimentos
+**Por que é a terceira?** Exige a maior alteração na arquitetura atual (novos tipos de contas, novas mecânicas).
+- **Banco de Dados:** Criar as tabelas `investments` e `investment_history`.
+- **Backend:** CRUD completo para registrar CDBs, Tesouro, Ações, e calcular o lucro percentual (ROI).
+- **Frontend:** Criar a página `/investments` com gráficos de pizza (diversificação da carteira) e um gráfico de linha do crescimento do patrimônio investido.
+
+### Fase 4: Motor de IA / Chatbot Financeiro Local
+**A cereja do bolo:** O nível mais avançado de interação.
+- Criar um painel lateral retrátil (Chat).
+- Lógica no backend (NLP simples ou integração com o modelo que já estamos usando) para entender comandos em texto natural.
+- Exemplos que funcionarão: *"Quanto gastei de Ifood no mês passado?"* ou *"Crie um orçamento de 500 reais para Lazer"*.
+
+---
+
+## ❓ Open Questions (Questões para você)
+
+> [!CAUTION]  
+> 1. Você concorda com essa **ordem** das fases? Começar pelo Fechamento do Mês (Wrapped)?
+> 2. No módulo de Investimentos (Fase 3), você prefere que a gente puxe a cotação real da bolsa (requer API externa na internet) ou um formato mais manual onde você lança a valorização todo mês?

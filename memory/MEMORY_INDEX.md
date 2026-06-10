@@ -1,11 +1,11 @@
-# 🧠 Finnancial - Memorial de Memória
+# 🧠 ZenTriq - Memorial de Memória
 
-Este diretório atua como o banco de conhecimento histórico do projeto **Finnancial**. Ele preserva o raciocínio, os erros e as decisões tomadas durante a transição da arquitetura legada (v1) para a moderna (v2).
+Este diretório atua como o banco de conhecimento histórico do projeto **ZenTriq**. Ele preserva o raciocínio, os erros e as decisões tomadas durante a transição da arquitetura legada (v1) para a moderna (v2).
 
 ---
 
 ## 🗺️ Guias Centrais (Base de Conhecimento)
-- [**Guia Mestre (Mapas)**](../Base%20de%20Dados/GUIA_FINNANCIAL.md) - Documento principal para localização de diretórios, rotas e componentes.
+- [**Guia Mestre (Mapas)**](../Base%20de%20Dados/GUIA_ZENTRIQ.md) - Documento principal para localização de diretórios, rotas e componentes.
 - [**Script BD (Estrutura)**](../Base%20de%20Dados/Script%20BD.md) - Estrutura definitiva das tabelas baseadas no Prisma ORM.
 
 ## 💾 Registro Histórico de Desenvolvimento

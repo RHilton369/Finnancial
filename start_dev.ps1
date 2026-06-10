@@ -1,11 +1,11 @@
-# FINNANCIAL - Script de Inicializacao de Desenvolvimento
+# ZENTRIQ - Script de Inicializacao de Desenvolvimento
 
 $projectRoot = $PSScriptRoot
-$apiPath = Join-Path $projectRoot "finnancial-api"
-$webPath = Join-Path $projectRoot "finnancial-web"
+$apiPath = Join-Path $projectRoot "zentriq-api"
+$webPath = Join-Path $projectRoot "zentriq-web"
 $pnpm = "pnpm.cmd"
 
-Write-Host "--- INICIANDO FINNANCIAL ---"
+Write-Host "--- INICIANDO ZENTRIQ ---"
 
 # Limpa processos
 $processes = Get-NetTCPConnection -LocalPort 3001, 5173 -State Listen -ErrorAction SilentlyContinue | Select-Object -ExpandProperty OwningProcess -Unique

@@ -1,0 +1,166 @@
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header h2 { font-size: 18px; font-weight: 600; }
+
+.yearSelect {
+  padding: 6px 12px;
+  border: 1.5px solid var(--border-color);
+  border-radius: var(--border-radius-sm);
+  font-size: 13px;
+}
+
+.summaryGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+.summaryCard {
+  background: var(--bg-card);
+  padding: 16px 20px;
+  border-radius: var(--border-radius-md);
+  box-shadow: var(--shadow-card);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.summaryLabel {
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+.incomeText { color: #1D9E75; font-size: 20px; font-weight: 600; }
+.expenseText { color: #E24B4A; font-size: 20px; font-weight: 600; }
+
+.chartsGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+@media (max-width: 900px) {
+  .chartsGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.chartCard {
+  background: var(--bg-card);
+  padding: 20px;
+  border-radius: var(--border-radius-md);
+  box-shadow: var(--shadow-card);
+}
+
+.cardTitle {
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+.catSelector {
+  margin-bottom: 16px;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.catSelector label {
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+.catSelector select {
+  padding: 6px 12px;
+  border: 1.5px solid var(--border-color);
+  border-radius: var(--border-radius-sm);
+  font-size: 13px;
+}
+
+.emptyChart {
+  text-align: center;
+  padding: 40px;
+  color: var(--text-tertiary);
+  font-size: 14px;
+}
+
+/* Table */
+.tableCard {
+  background: var(--bg-card);
+  padding: 20px;
+  border-radius: var(--border-radius-md);
+  box-shadow: var(--shadow-card);
+}
+
+.tableWrap { overflow-x: auto; }
+
+.monthlyTable {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.monthlyTable th {
+  text-align: left;
+  font-weight: 600;
+  font-size: 12px;
+  color: var(--text-secondary);
+  padding: 8px 12px;
+  border-bottom: 2px solid var(--border-color);
+}
+
+.monthlyTable td {
+  padding: 10px 12px;
+}
+
+.currentRow {
+  background: var(--color-primary-light);
+  border-radius: var(--border-radius-sm);
+}
+
+.monthlyTable tbody tr {
+  cursor: pointer;
+  border-bottom: 1px solid var(--border-color);
+  transition: background var(--transition);
+}
+
+.monthlyTable tbody tr:hover { background: var(--bg-page); }
+
+.savingsBadge {
+  font-size: 12px;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: 10px;
+}
+
+.green { background: var(--color-success-light); color: var(--color-success); }
+.yellow { background: var(--color-warning-light); color: var(--color-warning); }
+.red { background: var(--color-danger-light); color: var(--color-danger); }
+
+.incomeCell { color: var(--color-success); font-weight: 500; }
+.expenseCell { color: var(--color-danger); font-weight: 500; }
+
+.zeroCell { color: var(--color-text-tertiary); font-weight: 400; opacity: 0.55; }
+.grayBadge { background: var(--bg-tertiary); color: var(--color-text-tertiary); opacity: 0.55; }
+
+.loading {
+  text-align: center;
+  padding: 60px 20px;
+  color: var(--text-tertiary);
+}
+
+@media (max-width: 600px) {
+  .summaryGrid { grid-template-columns: repeat(2, 1fr); }
+}

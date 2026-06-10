@@ -3,17 +3,17 @@ Write-Host "--- INICIANDO PROCESSO DE ATUALIZACAO E BUILD ---" -ForegroundColor 
 
 # 1. Parar processos
 Write-Host "Limpando processos..." -ForegroundColor Yellow
-Stop-Process -Name "Finnancial" -ErrorAction SilentlyContinue
+Stop-Process -Name "ZenTriq" -ErrorAction SilentlyContinue
 Stop-Process -Name "electron" -ErrorAction SilentlyContinue
 taskkill /F /IM node.exe /T 2>$null
 taskkill /F /IM nodemon.exe /T 2>$null
-taskkill /F /IM Finnancial.exe /T 2>$null
+taskkill /F /IM ZenTriq.exe /T 2>$null
 taskkill /F /IM servidor-interno.exe /T 2>$null
 Start-Sleep -Seconds 2
 
 # 2. Limpar artefatos antigos da raiz da API
 Write-Host "Limpando artefatos antigos..." -ForegroundColor Yellow
-cd finnancial-api
+cd zentriq-api
 Remove-Item "schema.prisma" -Force -ErrorAction SilentlyContinue
 Remove-Item "query_engine-windows.dll.node" -Force -ErrorAction SilentlyContinue
 Remove-Item "servidor-interno.exe" -Force -ErrorAction SilentlyContinue
@@ -54,7 +54,7 @@ if ($engineSize -lt 20000000) {
 
 # 8. Build Frontend e Electron
 Write-Host "Compilando Frontend e Gerando Instalador..." -ForegroundColor Yellow
-cd ..\finnancial-web
+cd ..\zentriq-web
 pnpm run build
 if ($LASTEXITCODE -ne 0) { Write-Host "Falha no build Vite" -ForegroundColor Red; exit 1 }
 
@@ -64,16 +64,16 @@ if ($LASTEXITCODE -ne 0) { Write-Host "Falha no electron-builder" -ForegroundCol
 # 9. Validação final
 Write-Host ""
 Write-Host "=== VALIDACAO FINAL ===" -ForegroundColor Cyan
-$installerPath = Get-ChildItem -Path "release" -Filter "Finnancial Setup*.exe" | Where-Object { $_.Name -notmatch "uninstaller|blockmap" } | Select-Object -First 1
+$installerPath = Get-ChildItem -Path "release" -Filter "ZenTriq Setup*.exe" | Where-Object { $_.Name -notmatch "uninstaller|blockmap" } | Select-Object -First 1
 if ($installerPath) {
     Write-Host "Instalador: $($installerPath.Name) ($([math]::Round($installerPath.Length / 1MB, 1)) MB)" -ForegroundColor Green
 } else {
     Write-Host "ERRO: Instalador nao encontrado!" -ForegroundColor Red
 }
 
-$backendEngine = Get-Item "..\finnancial-api\query_engine-windows.dll.node"
+$backendEngine = Get-Item "..\zentriq-api\query_engine-windows.dll.node"
 Write-Host "Query Engine empacotado: $($backendEngine.Length) bytes" -ForegroundColor Green
 
 Write-Host ""
 Write-Host "--- BUILD CONCLUIDO COM SUCESSO! ---" -ForegroundColor Green
-Write-Host "Instalador gerado em: finnancial-web\release" -ForegroundColor Cyan
+Write-Host "Instalador gerado em: zentriq-web\release" -ForegroundColor Cyan

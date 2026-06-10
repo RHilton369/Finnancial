@@ -1,5 +1,5 @@
 ---
-description: Reinicia os servidores Backend (3001) e Frontend (5173) do projeto Finnancial
+description: Reinicia os servidores Backend (3001) e Frontend (5173) do projeto ZenTriq
 ---
 
 Quando o usuário pedir para reiniciar os servidores, siga as etapas abaixo:
@@ -14,13 +14,13 @@ if ($processes) { Stop-Process -Id $processes -Force; Write-Output "Processos en
 // turbo
 2. Inicie o backend:
 ```powershell
-Start-Process -FilePath "npm.cmd" -ArgumentList "run", "dev" -WorkingDirectory "D:\Arquivos_Obsidian\Finnancial\finnancial-api" -WindowStyle Hidden
+Start-Process -FilePath "npm.cmd" -ArgumentList "run", "dev" -WorkingDirectory "D:\Arquivos_Obsidian\ZenTriq\zentriq-api" -WindowStyle Hidden
 ```
 
 // turbo
 3. Inicie o frontend:
 ```powershell
-Start-Process -FilePath "npm.cmd" -ArgumentList "run", "dev" -WorkingDirectory "D:\Arquivos_Obsidian\Finnancial\finnancial-web" -WindowStyle Hidden
+Start-Process -FilePath "npm.cmd" -ArgumentList "run", "dev" -WorkingDirectory "D:\Arquivos_Obsidian\ZenTriq\zentriq-web" -WindowStyle Hidden
 ```
 
 4. Verifique as portas via: `Get-NetTCPConnection -LocalPort 3001, 5173 -State Listen` e atualize o `PROJETO.md` se ainda for solicitado pelas regras globais.
